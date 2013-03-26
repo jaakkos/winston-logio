@@ -24,3 +24,4 @@ logs
 results
 
 npm-debug.log
+test/runner.js

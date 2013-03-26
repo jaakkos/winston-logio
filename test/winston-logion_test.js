@@ -3,12 +3,13 @@ process.env.NODE_ENV = 'test';
 var chai = require('chai'),
     expect = chai.expect,
     net = require('net'),
-    winston = require('winston');
+    winston = require('winston'),
+    timekeeper = require('timekeeper'),
+    freezed_time = new Date(1330688329321);
 
 chai.Assertion.includeStack = true;
 
 require('../lib/winston-logio');
-
 
 describe('winston-logio transport', function() {
   var test_server, port = 28777;
@@ -26,18 +27,18 @@ describe('winston-logio transport', function() {
   function createLogger(port) {
     return new (winston.Logger)({
       transports: [
-        new (winston.transports.Logio)( { port: port, node_name: 'test' } )
+        new (winston.transports.Logio)( { port: port, node_name: 'test', localhost: 'localhost', pid: 12345 } )
       ]
     });
   }
 
-  // Setup
-  beforeEach(function(done) {
-    done();
-  });
-
   describe('with logio server', function () {
     var test_server, port = 28777;
+
+    beforeEach(function(done) {
+      timekeeper.freeze(freezed_time);
+      done();
+    });
 
     it('send logs over TCP', function(done) {
       var response;
@@ -45,7 +46,7 @@ describe('winston-logio transport', function() {
 
       test_server = createTestServer(port, function (data) {
         response = data.toString();
-        expect(response).to.be.equal('+node|test\r\n+log|worker_feed_split|test|info|hello world\r\n');
+        expect(response).to.be.equal('+node|localhost|test\r\n+log|localhost|test|info|Fri Mar 02 2012 12:38:49 GMT+0100 (CET)[12345]:hello world{\"stream\":\"worker_feed_split\"}\r\n');
         done();
       });
       logger.log('info', 'hello world', {stream: 'worker_feed_split'});
@@ -56,6 +57,7 @@ describe('winston-logio transport', function() {
       if (test_server) {
         test_server.close(function () {});
       }
+      timekeeper.reset();
       test_server = null;
     });
 
@@ -65,17 +67,15 @@ describe('winston-logio transport', function() {
     it('fallback to silent mode if log.io server is down', function(done) {
       var response;
       var logger = createLogger(28774);
-
       logger.log('info', 'hello world', {stream: 'worker_feed_split'});
 
-      expect(logger.transports.logio.try_to_connect_time).to.be.equal(3);
-      expect(logger.transports.logio.silent).to.be.undefined;
+      expect(logger.transports.logio.retries).to.be.equal(0);
 
       setTimeout( function () {
-        expect(logger.transports.logio.try_to_connect_time).to.be.equal(0);
+        expect(logger.transports.logio.retries).to.be.equal(3);
         expect(logger.transports.logio.silent).to.be.true;
         done();
-      }, 700);
+      }, 1000);
 
     });
   });

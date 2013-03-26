@@ -1,6 +1,6 @@
 {
   "name": "winston-logio",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "A Log.io transport for winston",
   "main": "./lib/winston-logio",
   "homepage": "https://github.com/jaakkos/winston-logio",
@@ -20,7 +20,8 @@
   "devDependencies": {
     "winston": ">=0.6.2",
     "mocha": ">=1.8.2",
-    "chai": ">=1.5.0"
+    "chai": ">=1.5.0",
+    "timekeeper": ">=0.0.3"
   },
   "keywords": [
     "logging",
