@@ -1,0 +1,50 @@
+{
+  "name": "winston-logio",
+  "version": "0.0.1",
+  "description": "A Log.io transport for winston",
+  "main": "./lib/winston-logio",
+  "homepage": "https://github.com/jaakkos/winston-logio",
+  "scripts": {
+    "test": "mocha test/*_test.js"
+  },
+  "engines": {
+    "node": ">=0.8.x"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jaakkos/winston-logio.git"
+  },
+  "dependencies": {
+    "winston": ">=0.6.2"
+  },
+  "devDependencies": {
+    "winston": ">=0.6.2",
+    "mocha": ">=1.8.2",
+    "chai": ">=1.5.0"
+  },
+  "keywords": [
+    "logging",
+    "sysadmin",
+    "tools"
+  ],
+  "bugs": {
+    "url" : "https://github.com/jaakkos/winston-logio/issues"
+  },
+  "author": {
+    "name": "Jaakko Suutarla",
+    "email": "jaakko@suutarla.com"
+  },
+  "license": "MIT",
+  "contributors": [
+    {
+      "name": "Jaakko Suutarla",
+      "email": "jaakko@suutarla.com"
+    }
+  ],
+  "maintainers": [
+    {
+      "name": "Jaakko Suutarla",
+      "email": "jaakko@suutarla.com"
+    }
+  ]
+}
