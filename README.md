@@ -1,6 +1,6 @@
 # winston-logio
 
-[![Build Status](https://travis-ci.org/jaakkos/winston-logio.png?branch=master)](https://travis-ci.org/jaakkos/winston-logstash)
+[![Build Status](https://travis-ci.org/jaakkos/winston-logio.png?branch=master)](https://travis-ci.org/jaakkos/winston-logio)
 
 A [Log.io][0] transport for [winston][1].
 
