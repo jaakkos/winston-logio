@@ -1,4 +1,6 @@
-# winston-loggly
+# winston-logio
+
+[![Build Status](https://travis-ci.org/jaakkos/winston-logio.png?branch=master)](https://travis-ci.org/jaakkos/winston-logstash)
 
 A [Log.io][0] transport for [winston][1].
 
@@ -29,7 +31,10 @@ A [Log.io][0] transport for [winston][1].
 ```
 
 #### Author: [Jaakko Suutarla](https://github.com/jaakkos)
+
 #### License: MIT
+
+See LICENSE for the full license text.
 
 [0]: http://logio.org/
 [1]: https://github.com/flatiron/winston
