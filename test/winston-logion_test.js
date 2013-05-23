@@ -46,7 +46,7 @@ describe('winston-logio transport', function() {
 
       test_server = createTestServer(port, function (data) {
         response = data.toString();
-        expect(response).to.be.equal('+node|localhost|test\r\n+log|localhost|test|info|Fri Mar 02 2012 12:38:49 GMT+0100 (CET)[12345]:hello world{\"stream\":\"worker_feed_split\"}\r\n');
+        expect(response).to.be.equal('+node|localhost|test\r\n+log|localhost|test|info|hello world, meta: stream=worker_feed_split \r\n');
         done();
       });
       logger.log('info', 'hello world', {stream: 'worker_feed_split'});
