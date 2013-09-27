@@ -1,6 +1,6 @@
 {
-  "name": "winston-logio",
-  "version": "0.1.0",
+  "name": "winston-logio-zzs",
+  "version": "0.1.2",
   "description": "A Log.io transport for winston",
   "main": "./lib/winston-logio",
   "homepage": "https://github.com/jaakkos/winston-logio",
