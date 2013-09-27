@@ -40,16 +40,28 @@ describe('winston-logio transport', function() {
       done();
     });
 
-    it('send logs over TCP', function(done) {
+    it('send logs over TCP with meta', function(done) {
       var response;
       var logger = createLogger(port);
 
       test_server = createTestServer(port, function (data) {
         response = data.toString();
-        expect(response).to.be.equal('+node|localhost|test\r\n+log|localhost|test|info|hello world, meta: stream=worker_feed_split \r\n');
+        expect(response).to.be.equal('+node|localhost|test\r\n+log|test|localhost|info|hello world, meta: stream=worker_feed_split \r\n');
         done();
       });
       logger.log('info', 'hello world', {stream: 'worker_feed_split'});
+    });
+
+    it('send logs over TCP without meta', function(done) {
+      var response;
+      var logger = createLogger(port);
+
+      test_server = createTestServer(port, function (data) {
+        response = data.toString();
+        expect(response).to.be.equal('+node|localhost|test\r\n+log|test|localhost|info|hello world\r\n');
+        done();
+      });
+      logger.log('info', 'hello world');
     });
 
     // Teardown
