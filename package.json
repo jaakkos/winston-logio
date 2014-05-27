@@ -1,6 +1,6 @@
 {
   "name": "winston-logio",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "A Log.io transport for winston",
   "main": "./lib/winston-logio",
   "homepage": "https://github.com/jaakkos/winston-logio",
@@ -40,6 +40,10 @@
     {
       "name": "Jaakko Suutarla",
       "email": "jaakko@suutarla.com"
+    },
+    {
+      "name": "Michael Poschacher",
+      "email": "michael.poschacher@gmail.com"
     }
   ],
   "maintainers": [
